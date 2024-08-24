@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naruto Characters</title>
+    <link rel="stylesheet" href="naruto_api.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Naruto Characters</h1>
+        <input type="text" id="searchInput" placeholder="Search...">
+    </div>
+    <div class="scroll-container" id="character-container"></div>
+
+    <script>
+        const characterContainer = document.getElementById('character-container');
+
+        // Function to fetch and display characters
+        function fetchAndDisplayCharacters() {
+            fetch('https://narutodb.xyz/api/character?page=0&limit=200')
+                .then(response => response.json())
+                .then(data => {
+                    displayCharacters(data.characters);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Function to display characters
+        function displayCharacters(characters) {
+            characterContainer.innerHTML = ''; // Clear previous characters
+            characters.forEach(character => {
+                const card = createCharacterCard(character);
+                characterContainer.appendChild(card);
+            });
+        }
+
+        // Function to create a character card
+        function createCharacterCard(character) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <img src="${character.images[0]}" alt="${character.name}" class="character-image">
+                <h2>${character.name}</h2>
+                <p><strong>Debut Novel:</strong> ${character.debut ? character.debut.novel : 'N/A'}</p>
+                <p><strong>Debut Movie:</strong> ${character.debut ? character.debut.movie : 'N/A'}</p>
+                <p><strong>Debut Appears In:</strong> ${character.debut ? character.debut.appearsIn : 'N/A'}</p>
+                <p><strong>Jutsu:</strong> ${character.jutsu ? character.jutsu.join(', ') : 'N/A'}</p>
+                <p><strong>Species:</strong> ${character.personal ? character.personal.species : 'N/A'}</p>
+                <p><strong>Unique Traits:</strong> ${character.uniqueTraits ? character.uniqueTraits.join(', ') : 'N/A'}</p>
+            `;
+            return card;
+        }
+
+        // Function to filter characters based on search input
+function filterCharacters(searchTerm) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const characterName = card.querySelector('h2').textContent.toLowerCase();
+        const characterData = card.innerHTML.toLowerCase(); // Get all character data as lowercase string
+        if (characterName.includes(searchTerm.toLowerCase()) || characterData.includes(searchTerm.toLowerCase())) {
+            card.style.display = 'block'; // Show matching characters
+        } else {
+            card.style.display = 'none'; // Hide non-matching characters
+        }
+    });
+}
+
+
+        // Event listener for search input
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterCharacters(this.value);
+        });
+
+        // Fetch and display characters
+        fetchAndDisplayCharacters();
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+
+body {
+    background-color: rgb(51, 51, 51);/*rgb(35, 35, 35); /* Light gray background */
+}
+
+
+/* Styles for card layout */
+.card {
+    width: calc(25% - 20px); /* Set the width to 25% of the viewport width minus margin */
+    min-width: 250px; /* Set minimum width to ensure cards are not too narrow */
+    max-width: 300px; /* Set maximum width to ensure cards are not too wide */
+    height: 500px; /* Set height of the card */
+    background-color: rgb(112, 128, 144);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out; /* Add transition effect */
+}
+
+/* Styles for scrollable container */
+.scroll-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to next line */
+    overflow-x: auto; /* Enable horizontal scroll */
+    padding: 20px;
+    margin-bottom: 20px; /* Add margin at the bottom for better spacing */
+}
+
+/* Styles for character images */
+.character-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Styles for card layout */
+.card {
+    /* Your existing styles */
+    overflow: hidden; /* Hide any overflowed content */
+}
+
+/* Styles for character details */
+.card p {
+    margin-bottom: 5px; /* Add margin bottom for better spacing */
+    overflow: hidden; /* Hide any overflowed content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.header h1{
+    color: whitesmoke;
+    font-size:xx-large;
+    margin-right: 20px;
+}
+
+
+
+
+
+
+
+/* Styles for search bar */
+.header {
+    background-color: rgb(51, 51, 51); /* Match background color */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+#searchInput {
+    width: 800px; /* Adjust width as needed */
+    height: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    color: #333; /* Dark text color */
+    font-size: 16px;
+}
+
+#searchInput::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+#searchInput:focus {
+    outline: none; /* Remove focus outline */
+}
